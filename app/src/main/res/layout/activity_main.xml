@@ -45,13 +45,24 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/textview_temperature"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textview_temperature" />
+    <Button
+        android:id="@+id/btn_initial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/celsius"
+        android:textAllCaps="true"
+        android:layout_margin="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview_temperature" />
     <!-- Os botões de ação formam uma chain visto que estão relacionados
     um com outro e também com a guideline de 30%. -->
     <Button
         android:id="@+id/btn_celsius"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="32dp"
         android:text="@string/celsius"
         android:textAllCaps="true"
         app:layout_constraintEnd_toStartOf="@+id/btn_fahrenheit"
@@ -59,13 +70,26 @@
         app:layout_constraintTop_toBottomOf="@+id/guideline_horizontal1" />
     <Button
         android:id="@+id/btn_fahrenheit"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="10dp"
         android:text="@string/fahrenheit"
         android:textAllCaps="true"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_kelvin"
         app:layout_constraintStart_toEndOf="@+id/btn_celsius"
+        app:layout_constraintTop_toBottomOf="@+id/guideline_horizontal1" />
+    <Button
+        android:id="@+id/btn_kelvin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/kelvin"
+        android:textAllCaps="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_fahrenheit"
         app:layout_constraintTop_toBottomOf="@+id/guideline_horizontal1" />
     <!-- São duas textview que apresentam o resultado, o posicionamento
     respeita restrições da guideline de 70%. -->

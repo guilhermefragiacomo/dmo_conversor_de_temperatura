@@ -10,8 +10,13 @@ import br.edu.ifsp.dmo.conversortemperatura.databinding.ActivityMainBinding
 import br.edu.ifsp.dmo.conversortemperatura.model.CelsiusStrategy
 import br.edu.ifsp.dmo.conversortemperatura.model.FahrenheitStrategy
 import br.edu.ifsp.dmo.conversortemperatura.model.ConversorTemperatura
+import br.edu.ifsp.dmo.conversortemperatura.model.FahrenheitKelvinStrategy
+import br.edu.ifsp.dmo.conversortemperatura.model.KelvinCelsiusStrategy
+import br.edu.ifsp.dmo.conversortemperatura.model.KelvinFahrenheitStrategy
+import br.edu.ifsp.dmo.conversortemperatura.model.KelvinStrategy
 import kotlin.NumberFormatException
 class MainActivity : AppCompatActivity() {
+    private var type: Int = 0
     private lateinit var binding: ActivityMainBinding
     private lateinit var converterStrategy: ConversorTemperatura
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,11 +42,45 @@ class MainActivity : AppCompatActivity() {
  */
 private fun setClickListener() {
     binding.btnCelsius.setOnClickListener {
-        handleConversion(CelsiusStrategy)
+        if (type == 1) {
+            handleConversion(CelsiusStrategy)
+        } else {
+            if (type == 2) {
+                handleConversion(KelvinCelsiusStrategy)
+            }
+        }
     }
     binding.btnFahrenheit.setOnClickListener(View.OnClickListener {
-        handleConversion(FahrenheitStrategy)
+        if (type == 0) {
+            handleConversion(FahrenheitStrategy)
+        } else {
+            if (type == 2) {
+                handleConversion(KelvinFahrenheitStrategy)
+            }
+        }
     })
+    binding.btnKelvin.setOnClickListener {
+        if (type == 0) {
+            handleConversion(KelvinStrategy)
+        } else {
+            if (type == 1) {
+                handleConversion(FahrenheitKelvinStrategy)
+            }
+        }
+    }
+    binding.btnInitial.setOnClickListener {
+        if (type < 2) {
+            type++
+        } else {
+            type = 0
+        }
+        binding.btnInitial.text = when (type) {
+            0 -> getString(R.string.celsius)
+            1 -> getString(R.string.fahrenheit)
+            2 -> getString(R.string.kelvin)
+            else -> getString(R.string.type_error)
+        }
+    }
 }
     /**
      * Método responsável por recuperar o valor digitado no edittext
